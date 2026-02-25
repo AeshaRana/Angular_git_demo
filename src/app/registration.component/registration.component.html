@@ -1,0 +1,99 @@
+<div class="d-flex justify-content-center align-items-center bg-light mt-3">
+    <div class="card shadow-lg p-5 rounded-4" style="width: 400px">
+        <form>
+            <h3 class="text-center mb-4 text-success mt-4s">Registration Form</h3>
+
+            <div class="mb-3">
+                <label for="fname" class="form-label fw-semibold"> Enter First Name </label>
+
+                <p-autoComplete [(ngModel)]="value" [suggestions]="items" (completeMethod)="search($event)"
+                    inputStyleClass="form-control" name="firstname" fluid>
+                </p-autoComplete>
+            </div>
+            <div class="mb-3">
+                <label for="lname" class="form-label fw-semibold"> Enter Last Name </label>
+
+                <p-autoComplete [(ngModel)]="value1" [suggestions]="items" (completeMethod)="search($event)"
+                    inputStyleClass="form-control" name="lastname" fluid>
+                </p-autoComplete>
+
+            </div>
+            <div class="mb-3">
+                <label for="country" class="form-label fw-semibold"> Select Your Country</label>
+
+                <p-autocomplete [(ngModel)]="selectedCountryAdvanced" [suggestions]="filteredCountries"
+                    (completeMethod)="filterCountry($event)" optionLabel="name" inputStyleClass="form-control" fluid
+                    name="country">
+                    <ng-template let-country #item>
+                        <div class="flex items-center gap-2">
+                            <!-- <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png" [class]="'flag flag-' + country.code.toLowerCase()"  /> -->
+                            <div>{{ country }}</div>
+                        </div>
+                    </ng-template>
+                    <ng-template #header>
+                        <div class="font-medium px-3 py-2">Available Countries</div>
+                    </ng-template>
+                </p-autocomplete>
+            </div>
+
+            <div class="mb-3">
+                <label for="address" class="form-label fw-semibold"> Enter your address</label>
+
+                <textarea rows="2" cols="38" pTextarea [(ngModel)]="value" fluid name="address"></textarea>
+
+            </div>
+
+            <div class="mb-3">
+                <label for="dob" class="form-label fw-semibold">Select Your DOB</label>
+                <p-floatlabel variant="on">
+                    <p-datepicker [(ngModel)]="date2" [iconDisplay]="'input'" [showIcon]="true" inputId="dob" name="dob"
+                        fluid />
+                    <label for="on_label">DOB</label>
+                </p-floatlabel>
+
+            </div>
+
+            <div class="mb-3">
+                <label for="gender" class="form-label fw-semibold"> Select Your Gender</label>
+                <div class="radio-button-container">
+                    <div class="flex align-items-center">
+                        <p-radiobutton name="gender" value="male" [(ngModel)]="gender" inputId="male"></p-radiobutton>
+                        <label for="male" class="ml-2">Male</label>
+                    </div>
+
+                    <div class="flex align-items-center">
+                        <p-radiobutton name="gender" value="female" [(ngModel)]="gender"
+                            inputId="female"></p-radiobutton>
+                        <label for="female" class="ml-2">Female</label>
+                    </div>
+
+                    <div class="flex align-items-center">
+                        <p-radiobutton name="gender" value="other" [(ngModel)]="gender" inputId="other"></p-radiobutton>
+                        <label for="other" class="ml-2">Other</label>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="mb-3">
+                <label for="phonenumber" class="form-label fw-semibold">Enter your phone number</label>
+                <p-inputmask mask="(+91) 1234567890" [(ngModel)]="phoneNumber" placeholder="(+91) 1234567890" fluid class="w-100" name="phonenumber"/>
+            </div>
+
+            <div class="d-grid mt-4">
+                <!-- app-button label="Register"></app-button> -->
+                <p-button label="Register" fluid icon="pi pi-user-plus"></p-button>
+            </div>
+
+
+            <div class="mb-3">
+                <p-divider layout="horizontal" class="!flex md:!hidden" align="center"><b>OR</b></p-divider>
+            </div>
+        </form>
+        <div class="mb-3">
+            <p>Already have account?? <p-button label="Login" icon="pi pi-user"
+                    (onClick)="redirectToLogin()"></p-button></p>
+        </div>
+        
+    </div>
+</div>

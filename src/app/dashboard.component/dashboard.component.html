@@ -1,0 +1,72 @@
+<div class="container m-5 ps-auto pe-auto">
+  <div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-2 h-50 gap-5">
+      <app-cards header="Total Customers" content="34"></app-cards>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-2 gap-5">
+      <app-cards header="Total Customers" content="34"></app-cards>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-2">
+      <app-cards header="Total Customers" content="34"></app-cards>
+    </div>
+  </div>
+</div>
+
+<div class="row m-2">
+   <div style="text-align: center;" ><h3 style="color: var(--text-color);">Fetured <span class="text-secondary">Products</span></h3>
+  </div>
+  <p-carousel
+    [value]="products"
+    [numVisible]="3"
+    [numScroll]="1"
+    [circular]="true"
+    [responsiveOptions]="responsiveOptions"
+    class="h-70"
+    autointerval="3000"
+  >
+    <ng-template let-product pTemplate="item">
+      <div class="card shadow-sm border-0 m-3 h-70">
+        <!-- Image Section -->
+        <div class="position-relative p-3">
+          <img
+            [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + product.image"
+            [alt]="product.name"
+            class="img-fluid rounded w-100"
+          />
+
+          <div class="position-absolute top-0 start-0 m-2">
+            <p-tag
+              [value]="product.inventoryStatus"
+              [severity]="getSeverity(product.inventoryStatus)"
+            >
+            </p-tag>
+          </div>
+        </div>
+
+        <!-- Card Body -->
+        <div class="card-body text-center">
+          <h6 class="card-title fw-semibold mb-2">
+            {{ product.name }}
+          </h6>
+
+          <h5 class="text-secondary fw-bold mb-3">${{ product.price }}</h5>
+
+          <!-- Buttons -->
+          <div class="d-flex justify-content-center gap-2">
+            <button
+              pButton
+              icon="pi pi-heart"
+              class="p-button-outlined"
+              severity="contrast"
+              variant="outlined"
+            ></button>
+
+           
+              <button pButton label="Buy Now" icon="pi pi-shopping-cart"  severity="contrast"  [disabled]="product.inventoryStatus === 'OUTOFSTOCK'"></button>
+           
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </p-carousel>
+</div>

@@ -1,0 +1,14 @@
+.p-carousel-indicator-active
+{
+    background: #141516;
+}
+
+
+.p-carousel-indicator-active .p-carousel-indicator-button {
+    /* background: var(--text-color); */
+    background: #141516;
+}
+
+.p-carousel-indicator-active .p-carousel-indicator-button:hover {
+    background: #141516
+}

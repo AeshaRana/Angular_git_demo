@@ -1,0 +1,78 @@
+<div class="container m-5 text-center">
+  <!-- <h3>Add to Cart page</h3> -->
+
+  <div class="card">
+    <p-table [value]="products" [tableStyle]="{ 'min-width': '60rem' }">
+      <ng-template #caption>
+        <div class="flex items-center justify-between">
+          <span class="fw-2 fs-3">Cart Page</span>
+        </div>
+      </ng-template>
+      <ng-template #header>
+        <tr>
+          <th>Name</th>
+          <th>Image</th>
+          <th>Price</th>
+          <th>Category</th>
+          <th>Quantity</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-product>
+        @if (product.inventoryStatus.toLowerCase() !== 'outofstock') {
+          <tr>
+            <td>{{ product.name }}</td>
+            <td>
+              <img
+                [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + product.image"
+                [alt]="product.name"
+                class="w-24 rounded"
+              />
+            </td>
+            <td>{{ product.price | currency: 'USD' }}</td>
+            <td>{{ product.category }}</td>
+            <td>
+              <p-button severity="danger" variant="outlined"> <i class="pi pi-minus"></i> </p-button
+              ><input type="number" value="1" class="text-center border-0" style="width: 2rem" />
+              <p-button severity="primary" variant="outlined">
+                <i class="pi pi-plus"></i>
+              </p-button>
+            </td>
+
+            <td>
+              <p-tag
+                [value]="product.inventoryStatus"
+                [severity]="getSeverity(product.inventoryStatus)"
+              />
+            </td>
+
+            <td>
+              <p-button lebel="remove" severity="danger" variant="outlined" [raised]="true">
+                <i class="pi pi-trash"></i
+              ></p-button>
+            </td>
+          </tr>
+        }
+      </ng-template>
+      <!-- <ng-template #footer>
+                    <tr>
+                        <td colspan="6">In total there are {{ products ? products.length : 0 }} products.</td>
+                    </tr>
+                </ng-template> -->
+      <ng-template #footer>
+        <div class="flex items-center justify-center">
+          <div class="flex-1">
+            <p-paginator
+              (onPageChange)="onPageChange1($event)"
+              [first]="first1"
+              [rows]="rows1"
+              [totalRecords]="20"
+              [rowsPerPageOptions]="[10, 20, 30]"
+            />
+          </div>
+        </div>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
